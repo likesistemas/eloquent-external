@@ -2,6 +2,8 @@
 
 namespace Like\Database\Tests;
 
+use Illuminate\Container\Container;
+use Like\Database\Config;
 use Like\Database\Eloquent;
 
 class EloquentContainerTest extends EloquentTest {
@@ -9,6 +11,10 @@ class EloquentContainerTest extends EloquentTest {
 		Eloquent::destroy();
 		self::assertFalse(Eloquent::isLoaded());
 
-		Eloquent::init(new ConfigBean());
+		$config = new ConfigBean();
+		Container::getInstance()->instance(Config::class, $config);
+		self::assertTrue(Container::getInstance()->has(Config::class));
+
+		Eloquent::init();
 	}
 }
