@@ -1,6 +1,6 @@
 CREATE TABLE `produto` (
   `codigo` int(6) NOT NULL,
-  `codigoCategoria` int(6) NOT NULL,
+  `codigoSubcategoria` int(6) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `valor` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
