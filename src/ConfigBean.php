@@ -6,15 +6,59 @@ class ConfigBean implements Config {
 	const DEFAULT_DRIVER = 'mysql';
 	const DEFAULT_FAKER_LANGUAGE = 'pt_BR';
 
+	/**
+	 * @var string
+	 */
 	private $driver;
+
+	/**
+	 * @var string
+	 */
+	private $host;
+
+	/**
+	 * @var string
+	 */
 	private $user;
+
+	/**
+	 * @var string
+	 */
 	private $password;
+
+	/**
+	 * @var string
+	 */
 	private $bd;
 
+	/**
+	 * Folder where the factorys are.
+	 *
+	 * @var string
+	 */
 	private $factoryFolder;
+
+	/**
+	 * Language the fake will use.
+	 *
+	 * @var string
+	 */
 	private $fakerLanguage = self::DEFAULT_FAKER_LANGUAGE;
+
+	/**
+	 * Providers that will be added to Faker.
+	 *
+	 * @var array
+	 */
 	private $fakerProviders = [];
 
+	/**
+	 * @param string $host
+	 * @param string $user
+	 * @param string $password
+	 * @param string $bd
+	 * @param string $driver
+	 */
 	public function __construct($host, $user, $password, $bd, $driver=self::DEFAULT_DRIVER) {
 		$this->host = $host;
 		$this->user = $user;

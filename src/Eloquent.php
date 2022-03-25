@@ -14,9 +14,9 @@ class Eloquent {
 	private static $loaded;
 
 	/**
-	 * @var Factory
+	 * @var Factory|null
 	 */
-	private static $factory;
+	private static $factory = null;
 
 	public static function init(Config $config=null) {
 		if (self::$loaded === true) {
