@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-composer require likesistemas/eloquent-external --dev
+composer require likesistemas/eloquent-external
 ```
 
 ## How to use
