@@ -2,28 +2,46 @@
 
 namespace Like\Database;
 
+use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Factory;
 
 class Eloquent {
 
 	/**
+	 * @var boolean
+	 */
+	private static $loaded;
+
+	/**
 	 * @var Factory
 	 */
 	private static $factory;
 
-	public static function init(Config $config) {
-		static $loaded;
-
-		if ($loaded === true) {
+	public static function init(Config $config=null) {
+		if (self::$loaded === true) {
 			return;
+		}
+
+		if ($config === null && Container::getInstance()->has(Config::class)) {
+			$config = Container::getInstance()
+				->get(Config::class);
 		}
 
 		self::initEloquent($config);
 		self::$factory = self::createFactory($config);
 		self::loadFactorys($config);
 
-		$loaded = true;
+		self::$loaded = true;
+	}
+
+	public static function destroy() {
+		self::$factory = null;
+		self::$loaded = false;
+	}
+
+	public static function isLoaded() {
+		return self::$loaded;
 	}
 
 	private static function initEloquent(Config $config) {
