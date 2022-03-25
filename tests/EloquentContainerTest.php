@@ -13,7 +13,7 @@ class EloquentContainerTest extends EloquentTest {
 
 		$config = new ConfigBean();
 		Container::getInstance()->instance(Config::class, $config);
-		self::assertTrue(Container::getInstance()->has(Config::class));
+		self::assertTrue(Container::getInstance()->bound(Config::class));
 
 		Eloquent::init();
 	}

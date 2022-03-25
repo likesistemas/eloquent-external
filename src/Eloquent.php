@@ -23,9 +23,9 @@ class Eloquent {
 			return;
 		}
 
-		if ($config === null && Container::getInstance()->has(Config::class)) {
+		if ($config === null && Container::getInstance()->bound(Config::class)) {
 			$config = Container::getInstance()
-				->get(Config::class);
+				->make(Config::class);
 		}
 
 		self::initEloquent($config);

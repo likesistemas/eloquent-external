@@ -6,9 +6,9 @@
 composer require likesistemas/eloquent-external --dev
 ```
 
-### How to use
+## How to use
 
-#### Using class `ConfigBean`
+### Using class `ConfigBean`
 
 ```php
 
