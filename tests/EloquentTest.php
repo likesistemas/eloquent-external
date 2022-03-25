@@ -10,8 +10,10 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class EloquentTest extends TestCase {
 	public static function set_up_before_class() {
-		$config = new Config();
-		Eloquent::init($config);
+		Eloquent::destroy();
+		self::assertFalse(Eloquent::isLoaded());
+
+		Eloquent::init(new Config());
 	}
 
 	public function testSimpleFactory() {

@@ -6,37 +6,46 @@ use Like\Database\Config as DatabaseConfig;
 use Like\Database\Tests\FakerProviders\ProdutoProvider;
 
 class Config implements DatabaseConfig {
+	const DRIVER = 'mysql';
+	const HOST = 'mysql';
+	const USER = 'root';
+	const PASSWORD = 'root';
+	const DB = 'eloquent';
+	const FACTORY_FOLDER = __DIR__ . '/./Factories/';
+	const FAKER_LANGUAGE = 'pt_BR';
+	const FAKER_PROVIDER = ProdutoProvider::class;
+
 	public function getDriver() {
-		return 'mysql';
+		return self::DRIVER;
 	}
 
 	public function getHost() {
-		return 'mysql';
+		return self::HOST;
 	}
 
-	public function getBd() {
-		return 'eloquent';
+	public function getDb() {
+		return self::DB;
 	}
 
 	public function getUser() {
-		return 'root';
+		return self::USER;
 	}
 
 	public function getPassword() {
-		return 'root';
+		return self::PASSWORD;
 	}
 
 	public function getFactoryFolder() {
-		return __DIR__ . '/./Factories/';
+		return self::FACTORY_FOLDER;
 	}
 
 	public function getFakerLanguage() {
-		return 'pt_BR';
+		return self::FAKER_LANGUAGE;
 	}
 
 	public function getFakerProviders() {
 		return [
-			ProdutoProvider::class,
+			self::FAKER_PROVIDER,
 		];
 	}
 }
