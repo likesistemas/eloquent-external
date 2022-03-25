@@ -49,7 +49,7 @@ class Eloquent {
 		$capsule->addConnection([
 			'driver' => 'mysql',
 			'host' => $config->getHost(),
-			'database' => $config->getBd(),
+			'database' => $config->getDb(),
 			'username' => $config->getUser(),
 			'password' => $config->getPassword(),
 		]);

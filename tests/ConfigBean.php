@@ -10,7 +10,7 @@ class ConfigBean extends DatabaseConfigBean {
 			Config::HOST,
 			Config::USER,
 			Config::PASSWORD,
-			Config::BD
+			Config::DB
 		);
 
 		$this->setFactoryFolder(Config::FACTORY_FOLDER);

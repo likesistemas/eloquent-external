@@ -17,7 +17,7 @@ interface Config {
 	/**
 	 * @return string
 	 */
-	public function getBd();
+	public function getDb();
 
 	/**
 	 * @return string

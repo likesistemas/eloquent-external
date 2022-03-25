@@ -29,7 +29,7 @@ class ConfigBean implements Config {
 	/**
 	 * @var string
 	 */
-	private $bd;
+	private $db;
 
 	/**
 	 * Folder where the factorys are.
@@ -56,14 +56,14 @@ class ConfigBean implements Config {
 	 * @param string $host
 	 * @param string $user
 	 * @param string $password
-	 * @param string $bd
+	 * @param string $db
 	 * @param string $driver
 	 */
-	public function __construct($host, $user, $password, $bd, $driver=self::DEFAULT_DRIVER) {
+	public function __construct($host, $user, $password, $db, $driver=self::DEFAULT_DRIVER) {
 		$this->host = $host;
 		$this->user = $user;
 		$this->password = $password;
-		$this->bd = $bd;
+		$this->db = $db;
 		$this->driver = $driver;
 	}
 
@@ -75,8 +75,8 @@ class ConfigBean implements Config {
 		return $this->host;
 	}
 
-	public function getBd() {
-		return $this->bd;
+	public function getDb() {
+		return $this->db;
 	}
 
 	public function getUser() {

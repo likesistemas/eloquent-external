@@ -10,7 +10,7 @@ class Config implements DatabaseConfig {
 	const HOST = 'mysql';
 	const USER = 'root';
 	const PASSWORD = 'root';
-	const BD = 'eloquent';
+	const DB = 'eloquent';
 	const FACTORY_FOLDER = __DIR__ . '/./Factories/';
 	const FAKER_LANGUAGE = 'pt_BR';
 	const FAKER_PROVIDER = ProdutoProvider::class;
@@ -23,8 +23,8 @@ class Config implements DatabaseConfig {
 		return self::HOST;
 	}
 
-	public function getBd() {
-		return self::BD;
+	public function getDb() {
+		return self::DB;
 	}
 
 	public function getUser() {
