@@ -13,7 +13,7 @@ class Produto extends Model {
 	const CERVEJA = 'cerveja';
 
 	protected $fillable = [
-		'nome', 'valor', 'codigoSubcategoria',
+		'nome', 'referencia', 'valor', 'codigoSubcategoria',
 	];
 
 	public function subcategoria() {

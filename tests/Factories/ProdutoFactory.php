@@ -4,6 +4,7 @@
 
 use Faker\Generator as Faker;
 use Like\Database\Eloquent;
+use Like\Database\Faker as DatabaseFaker;
 use Like\Database\Tests\Models\Produto;
 use Like\Database\Tests\Models\Subcategoria;
 
@@ -19,6 +20,7 @@ $factory->define(Produto::class, function (Faker $faker) {
 	return [
 		'nome' => $faker->name,
 		'valor' => 10,
+		'referencia' => DatabaseFaker::unique($faker, 'referenciaProduto')->numberBetween(1, 100),
 	];
 });
 
