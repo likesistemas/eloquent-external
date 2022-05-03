@@ -5,6 +5,7 @@ namespace Like\Database;
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Events\Dispatcher;
 
 class Eloquent {
 
@@ -53,6 +54,11 @@ class Eloquent {
 			'username' => $config->getUser(),
 			'password' => $config->getPassword(),
 		]);
+		$capsule->setEventDispatcher(
+			new Dispatcher(
+				Container::getInstance()
+			)
+		);
 		$capsule->bootEloquent();
 	}
 
