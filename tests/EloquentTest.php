@@ -5,6 +5,7 @@ namespace Like\Database\Tests;
 use Like\Database\Eloquent;
 use Like\Database\Tests\FakerProviders\ProdutoProvider;
 use Like\Database\Tests\Models\Produto;
+use Like\Database\Tests\Models\ProdutoObserver;
 use Like\Database\Tests\Models\Subcategoria;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
@@ -43,5 +44,26 @@ class EloquentTest extends TestCase {
 			$this->assertInstanceOf(Produto::class, $produto);
 			$this->assertTrue(in_array($produto->nome, ProdutoProvider::REFRIGERANTES));
 		}
+	}
+
+	public function testDispatchEvent() {
+		$subcategoria = Eloquent::factoryOf(Subcategoria::class)->create();
+
+		ProdutoObserver::$i = 0;
+		Produto::observe(ProdutoObserver::class);
+
+		$this->assertEquals(0, ProdutoObserver::$i);
+
+		Produto::create([
+			'referencia' => 1,
+			'nome' => 'Coca-cola',
+			'codigoSubcategoria' => $subcategoria->codigo,
+		]);
+		$this->assertEquals(1, ProdutoObserver::$i);
+
+		Eloquent::factoryOf(Produto::class)->create([
+			'codigoSubcategoria' => $subcategoria->codigo,
+		]);
+		$this->assertEquals(2, ProdutoObserver::$i);
 	}
 }

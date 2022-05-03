@@ -4,6 +4,9 @@ namespace Like\Database\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static Like\Database\Tests\Models\Produto create(array $values)
+ */
 class Produto extends Model {
 	protected $table = 'produto';
 	protected $primaryKey = 'codigo';
