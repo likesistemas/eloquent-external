@@ -3,7 +3,6 @@
 namespace Like\Database;
 
 interface Config {
-	
 	/**
 	 * @return string
 	 */
@@ -13,7 +12,7 @@ interface Config {
 	 * @return string
 	 */
 	public function getHost();
-	
+
 	/**
 	 * @return string
 	 */
@@ -28,6 +27,16 @@ interface Config {
 	 * @return string
 	 */
 	public function getPassword();
+
+	/**
+	 * @return ?string
+	 */
+	public function getCharset();
+
+	/**
+	 * @return ?string
+	 */
+	public function getCollation();
 
 	/**
 	 * Folder where the factorys are.

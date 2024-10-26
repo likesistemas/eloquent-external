@@ -9,7 +9,6 @@ use Faker\UniqueGenerator;
 use ReflectionClass;
 
 class Faker {
-
 	/**
 	 * @var UniqueGenerator[]
 	 */
@@ -39,11 +38,11 @@ class Faker {
 		return $class->newInstanceArgs([$faker]);
 	}
 
-	public static function unique(Generator $faker, $name, $maxRetries=10000) {
+	public static function unique(Generator $faker, $name, $maxRetries = 10000) {
 		if (! isset(self::$uniques[$name])) {
 			self::$uniques[$name] = new UniqueGenerator($faker, $maxRetries);
 		}
-		
+
 		return self::$uniques[$name];
 	}
 

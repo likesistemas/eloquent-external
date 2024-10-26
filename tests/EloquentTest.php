@@ -20,7 +20,7 @@ class EloquentTest extends TestCase {
 	public function testSimpleFactory() {
 		$subcategoria = Eloquent::factoryOf(Subcategoria::class)->create();
 		$this->assertInstanceOf(Subcategoria::class, $subcategoria);
-		
+
 		$produto = Eloquent::factoryOf(Produto::class)->create([
 			'codigoSubcategoria' => $subcategoria->codigo,
 		]);
@@ -34,7 +34,7 @@ class EloquentTest extends TestCase {
 		foreach ($subcategorias as $subcategoria) {
 			$this->assertInstanceOf(Subcategoria::class, $subcategoria);
 		}
-		
+
 		$produtos = Eloquent::factoryOf(Produto::class, 5)->states(Produto::REFRIGERANTE)->create([
 			'codigoSubcategoria' => $subcategorias[0]->codigo,
 		]);
