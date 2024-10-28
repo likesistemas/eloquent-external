@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Events\Dispatcher;
 
 class Eloquent {
-
 	/**
 	 * @var boolean
 	 */
@@ -19,7 +18,7 @@ class Eloquent {
 	 */
 	private static $factory = null;
 
-	public static function init(Config $config=null) {
+	public static function init(Config $config = null) {
 		if (self::$loaded === true) {
 			return;
 		}
@@ -47,19 +46,33 @@ class Eloquent {
 
 	private static function initEloquent(Config $config) {
 		$capsule = new Capsule();
-		$capsule->addConnection([
-			'driver' => 'mysql',
-			'host' => $config->getHost(),
-			'database' => $config->getDb(),
-			'username' => $config->getUser(),
-			'password' => $config->getPassword(),
-		]);
+		$capsule->addConnection(self::getConfigConnection($config));
 		$capsule->setEventDispatcher(
 			new Dispatcher(
 				Container::getInstance()
 			)
 		);
 		$capsule->bootEloquent();
+	}
+
+	private static function getConfigConnection(Config $config) {
+		$cfg = [
+			'driver' => 'mysql',
+			'host' => $config->getHost(),
+			'database' => $config->getDb(),
+			'username' => $config->getUser(),
+			'password' => $config->getPassword(),
+		];
+
+		if ($config->getCharset()) {
+			$cfg['charset'] = $config->getCharset();
+		}
+
+		if ($config->getCollation()) {
+			$cfg['collation'] = $config->getCollation();
+		}
+
+		return $cfg;
 	}
 
 	private static function createFactory(Config $config) {
@@ -83,7 +96,6 @@ class Eloquent {
 	 */
 	public static function factoryOf(...$arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
-			// @phpstan-ignore-next-line
 			return self::factory()->of($arguments[0], $arguments[1])->times(! empty($arguments[2]) ? $arguments[2] : null);
 		} elseif (isset($arguments[1])) {
 			return self::factory()->of($arguments[0])->times($arguments[1]);

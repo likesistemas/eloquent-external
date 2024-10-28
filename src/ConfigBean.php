@@ -32,6 +32,16 @@ class ConfigBean implements Config {
 	private $db;
 
 	/**
+	 * @var string
+	 */
+	private $collation;
+
+	/**
+	 * @var string
+	 */
+	private $charset;
+
+	/**
 	 * Folder where the factorys are.
 	 *
 	 * @var string
@@ -59,7 +69,7 @@ class ConfigBean implements Config {
 	 * @param string $db
 	 * @param string $driver
 	 */
-	public function __construct($host, $user, $password, $db, $driver=self::DEFAULT_DRIVER) {
+	public function __construct($host, $user, $password, $db, $driver = self::DEFAULT_DRIVER) {
 		$this->host = $host;
 		$this->user = $user;
 		$this->password = $password;
@@ -87,12 +97,32 @@ class ConfigBean implements Config {
 		return $this->password;
 	}
 
+	public function setCharset($charset) {
+		$this->charset = $charset;
+	}
+
+	public function getCharset() {
+		return $this->charset;
+	}
+
+	public function setCollation($collation) {
+		$this->collation = $collation;
+	}
+
+	public function getCollation() {
+		return $this->collation;
+	}
+
 	public function getFactoryFolder() {
 		return $this->factoryFolder;
 	}
 
 	public function getFakerLanguage() {
 		return $this->fakerLanguage;
+	}
+
+	public function setFakerLanguage($language) {
+		$this->fakerLanguage = $language;
 	}
 
 	public function getFakerProviders() {

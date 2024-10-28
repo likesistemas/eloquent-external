@@ -39,6 +39,14 @@ class Config implements DatabaseConfig {
 		return self::FACTORY_FOLDER;
 	}
 
+	public function getCollation() {
+		return null;
+	}
+
+	public function getCharset() {
+		return null;
+	}
+
 	public function getFakerLanguage() {
 		return self::FAKER_LANGUAGE;
 	}

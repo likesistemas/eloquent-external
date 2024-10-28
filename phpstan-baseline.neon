@@ -1,0 +1,16 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined static method Like\\\\Database\\\\Tests\\\\Models\\\\Produto\\:\\:create\\(\\)\\.$#"
+			count: 1
+			path: tests/EloquentTest.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: tests/Models/Produto.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: tests/Models/Subcategoria.php
