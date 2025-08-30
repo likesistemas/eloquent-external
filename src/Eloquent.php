@@ -7,7 +7,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 
 class Eloquent {
-	private static bool $loaded;
+	private static bool $loaded = false;
 	private static ?LegacyFactory $factory = null;
 
 	public static function init(?Config $config = null): void {
