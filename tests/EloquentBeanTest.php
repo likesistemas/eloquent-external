@@ -5,7 +5,7 @@ namespace Like\Database\Tests;
 use Like\Database\Eloquent;
 
 class EloquentBeanTest extends EloquentTest {
-	public static function set_up_before_class() {
+	public static function set_up_before_class(): void {
 		Eloquent::destroy();
 		self::assertFalse(Eloquent::isLoaded());
 

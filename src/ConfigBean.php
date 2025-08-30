@@ -97,7 +97,7 @@ class ConfigBean implements Config {
 		return $this->password;
 	}
 
-	public function setCharset($charset) {
+	public function setCharset($charset): void {
 		$this->charset = $charset;
 	}
 
@@ -105,7 +105,7 @@ class ConfigBean implements Config {
 		return $this->charset;
 	}
 
-	public function setCollation($collation) {
+	public function setCollation($collation): void {
 		$this->collation = $collation;
 	}
 
@@ -121,7 +121,7 @@ class ConfigBean implements Config {
 		return $this->fakerLanguage;
 	}
 
-	public function setFakerLanguage($language) {
+	public function setFakerLanguage($language): void {
 		$this->fakerLanguage = $language;
 	}
 
@@ -129,11 +129,11 @@ class ConfigBean implements Config {
 		return $this->fakerProviders;
 	}
 
-	public function setFactoryFolder($src) {
+	public function setFactoryFolder($src): void {
 		$this->factoryFolder = $src;
 	}
 
-	public function addFakerProvider($class) {
+	public function addFakerProvider($class): void {
 		$this->fakerProviders[] = $class;
 	}
 }

@@ -10,7 +10,7 @@ use Like\Database\Tests\Models\Subcategoria;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class EloquentTest extends TestCase {
-	public static function set_up_before_class() {
+	public static function set_up_before_class(): void {
 		Eloquent::destroy();
 		self::assertFalse(Eloquent::isLoaded());
 

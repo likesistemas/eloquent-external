@@ -2,6 +2,7 @@
 
 namespace Like\Database;
 
+use Illuminate\Database\Eloquent\FactoryBuilder;
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Factory;
@@ -11,7 +12,7 @@ class Eloquent {
 	private static bool $loaded;
 	private static ?Factory $factory = null;
 
-	public static function init(?Config $config = null) {
+	public static function init(?Config $config = null): void {
 		if (self::$loaded === true) {
 			return;
 		}
@@ -28,16 +29,16 @@ class Eloquent {
 		self::$loaded = true;
 	}
 
-	public static function destroy() {
+	public static function destroy(): void {
 		self::$factory = null;
 		self::$loaded = false;
 	}
 
-	public static function isLoaded() {
+	public static function isLoaded(): bool {
 		return self::$loaded;
 	}
 
-	private static function initEloquent(Config $config) {
+	private static function initEloquent(Config $config): void {
 		$capsule = new Capsule();
 		$capsule->addConnection(self::getConfigConnection($config));
 		$capsule->setEventDispatcher(
@@ -68,26 +69,26 @@ class Eloquent {
 		return $cfg;
 	}
 
-	private static function createFactory(Config $config) {
+	private static function createFactory(Config $config): Factory {
 		$factory = new Factory(Faker::factory($config));
 		return $factory;
 	}
 
-	private static function loadFactorys(Config $config) {
+	private static function loadFactorys(Config $config): void {
 		self::$factory->load($config->getFactoryFolder());
 	}
 
 	/**
 	 * @return Factory
 	 */
-	public static function factory() {
+	public static function factory(): ?Factory {
 		return self::$factory;
 	}
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\FactoryBuilder
-	 */
-	public static function factoryOf(...$arguments) {
+     * @return FactoryBuilder
+     */
+    public static function factoryOf(...$arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
 			return self::factory()
 				->of($arguments[0])

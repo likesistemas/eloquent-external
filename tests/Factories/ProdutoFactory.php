@@ -1,22 +1,22 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-
+use Illuminate\Database\Eloquent\Factory;
 use Faker\Generator as Faker;
 use Like\Database\Eloquent;
 use Like\Database\Faker as DatabaseFaker;
 use Like\Database\Tests\Models\Produto;
 use Like\Database\Tests\Models\Subcategoria;
 
+/** @var Factory $factory */
 $factory = Eloquent::factory();
 
-$factory->define(Subcategoria::class, function (Faker $faker) {
+$factory->define(Subcategoria::class, function (Faker $faker): array {
 	return [
 		'nome' => $faker->name,
 	];
 });
 
-$factory->define(Produto::class, function (Faker $faker) {
+$factory->define(Produto::class, function (Faker $faker): array {
 	return [
 		'nome' => $faker->name,
 		'valor' => 10,
@@ -24,7 +24,7 @@ $factory->define(Produto::class, function (Faker $faker) {
 	];
 });
 
-$factory->state(Produto::class, Produto::REFRIGERANTE, function (Faker $faker) {
+$factory->state(Produto::class, Produto::REFRIGERANTE, function (Faker $faker): array {
 	return [
 
 		'nome' => $faker->refrigerante(), // @phpstan-ignore-line
@@ -32,7 +32,7 @@ $factory->state(Produto::class, Produto::REFRIGERANTE, function (Faker $faker) {
 	];
 });
 
-$factory->state(Produto::class, Produto::CERVEJA, function (Faker $faker) {
+$factory->state(Produto::class, Produto::CERVEJA, function (Faker $faker): array {
 	return [
 		'nome' => $faker->cerveja(), // @phpstan-ignore-line
 		'valor' => $faker->randomFloat(2, 5, 12),

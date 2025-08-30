@@ -7,7 +7,7 @@ use Like\Database\Config;
 use Like\Database\Eloquent;
 
 class EloquentContainerTest extends EloquentTest {
-	public static function set_up_before_class() {
+	public static function set_up_before_class(): void {
 		Eloquent::destroy();
 		self::assertFalse(Eloquent::isLoaded());
 

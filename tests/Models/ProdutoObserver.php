@@ -10,7 +10,7 @@ class ProdutoObserver {
 	 *
 	 * @return void
 	 */
-	public function created(Produto $produto) {
+	public function created(Produto $produto): void {
 		self::$i++;
 	}
 }

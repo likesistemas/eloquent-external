@@ -51,7 +51,7 @@ class Config implements DatabaseConfig {
 		return self::FAKER_LANGUAGE;
 	}
 
-	public function getFakerProviders() {
+	public function getFakerProviders(): array {
 		return [
 			self::FAKER_PROVIDER,
 		];
