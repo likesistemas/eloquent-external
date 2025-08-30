@@ -48,7 +48,7 @@ class Eloquent {
 		$capsule->bootEloquent();
 	}
 
-	private static function getConfigConnection(Config $config) {
+	private static function getConfigConnection(Config $config): array {
 		$cfg = [
 			'driver' => 'mysql',
 			'host' => $config->getHost(),

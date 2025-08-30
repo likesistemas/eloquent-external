@@ -15,27 +15,27 @@ class Config implements DatabaseConfig {
 	const FAKER_LANGUAGE = 'pt_BR';
 	const FAKER_PROVIDER = ProdutoProvider::class;
 
-	public function getDriver() {
+	public function getDriver(): string {
 		return self::DRIVER;
 	}
 
-	public function getHost() {
+	public function getHost(): string {
 		return self::HOST;
 	}
 
-	public function getDb() {
+	public function getDb(): string {
 		return self::DB;
 	}
 
-	public function getUser() {
+	public function getUser(): string {
 		return self::USER;
 	}
 
-	public function getPassword() {
+	public function getPassword(): string {
 		return self::PASSWORD;
 	}
 
-	public function getFactoryFolder() {
+	public function getFactoryFolder(): string {
 		return self::FACTORY_FOLDER;
 	}
 
@@ -47,7 +47,7 @@ class Config implements DatabaseConfig {
 		return null;
 	}
 
-	public function getFakerLanguage() {
+	public function getFakerLanguage(): string {
 		return self::FAKER_LANGUAGE;
 	}
 

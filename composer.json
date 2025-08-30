@@ -44,6 +44,8 @@
         "fix:ci": "ecs",
         "test": "phpunit",
         "lint": "parallel-lint --exclude .git --exclude vendor .",
+        "refactor": "rector",
+        "refactor:ci": "rector --dry-run",
         "analyse": "phpstan analyse",
         "analyse:baseline": "phpstan analyse --generate-baseline",
         "models:refresh": "ide-helper models"
