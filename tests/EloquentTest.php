@@ -10,14 +10,14 @@ use Like\Database\Tests\Models\Subcategoria;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class EloquentTest extends TestCase {
-	public static function set_up_before_class() {
+	public static function set_up_before_class(): void {
 		Eloquent::destroy();
 		self::assertFalse(Eloquent::isLoaded());
 
 		Eloquent::init(new Config());
 	}
 
-	public function testSimpleFactory() {
+	public function testSimpleFactory(): void {
 		$subcategoria = Eloquent::factoryOf(Subcategoria::class)->create();
 		$this->assertInstanceOf(Subcategoria::class, $subcategoria);
 
@@ -28,7 +28,7 @@ class EloquentTest extends TestCase {
 		$this->assertEquals($subcategoria->codigo, $produto->subcategoria->codigo);
 	}
 
-	public function testMultipleFactoryWithState() {
+	public function testMultipleFactoryWithState(): void {
 		$subcategorias = Eloquent::factoryOf(Subcategoria::class, 5)->create();
 		$this->assertCount(5, $subcategorias);
 		foreach ($subcategorias as $subcategoria) {
@@ -46,7 +46,7 @@ class EloquentTest extends TestCase {
 		}
 	}
 
-	public function testDispatchEvent() {
+	public function testDispatchEvent(): void {
 		$subcategoria = Eloquent::factoryOf(Subcategoria::class)->create();
 
 		ProdutoObserver::$i = 0;

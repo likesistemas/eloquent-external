@@ -6,7 +6,7 @@ networks:
 services:
 
   php:
-    image: likesistemas/php-dev:${PHP_VERSION:-56}
+    image: likesistemas/php-dev:${PHP_VERSION:-74}
     environment:
       - GITHUB_TOKEN=$GITHUB_TOKEN
       - URL_SENTRY=${URL_SENTRY}
@@ -15,8 +15,6 @@ services:
       - ./:/var/www/public/
     networks:
       - github
-    links:
-      - mysql
     depends_on:
       - mysql
 

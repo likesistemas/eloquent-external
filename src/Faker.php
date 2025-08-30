@@ -12,7 +12,7 @@ class Faker {
 	/**
 	 * @var UniqueGenerator[]
 	 */
-	private static $uniques = [];
+	private static array $uniques = [];
 
 	/**
 	 * @return Generator
@@ -28,25 +28,23 @@ class Faker {
 	}
 
 	/**
-	 * @param Generator $faker
 	 * @param string $providerClass
-	 *
 	 * @return Base
 	 */
-	private static function createProvider(Generator $faker, $providerClass) {
+	private static function createProvider(Generator $faker, $providerClass): object {
 		$class = new ReflectionClass($providerClass);
 		return $class->newInstanceArgs([$faker]);
 	}
 
 	public static function unique(Generator $faker, $name, $maxRetries = 10000) {
-		if (! isset(self::$uniques[$name])) {
+		if (!isset(self::$uniques[$name])) {
 			self::$uniques[$name] = new UniqueGenerator($faker, $maxRetries);
 		}
 
 		return self::$uniques[$name];
 	}
 
-	public static function resetUnique() {
+	public static function resetUnique(): void {
 		self::$uniques = [];
 	}
 }

@@ -16,7 +16,7 @@ jobs:
   test:
     strategy:
       matrix:
-        PHP: [56, 74, 80, 81, 82, 83]
+        PHP: [74, 80, 81, 82, 83]
 
     runs-on: ubuntu-latest
 
@@ -44,17 +44,19 @@ jobs:
           docker compose ps
           docker compose logs php
 
+      - name: Run Lint
+        run: |
+          docker compose exec -T php composer lint
+
       - name: Run PHP Unit
         run: |
           docker compose exec -T php composer test
 
       - name: Run PHP Stan
-        if: matrix.PHP != '56'
         run: |
           docker compose exec -T php composer analyse
 
       - name: Run PHP CS Fixer
-        if: matrix.PHP != '56'
         run: |
           docker compose exec -T php composer fix:ci
 

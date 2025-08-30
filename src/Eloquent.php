@@ -5,25 +5,19 @@ namespace Like\Database;
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\FactoryBuilder;
 use Illuminate\Events\Dispatcher;
 
 class Eloquent {
-	/**
-	 * @var boolean
-	 */
-	private static $loaded;
+	private static bool $loaded;
+	private static ?Factory $factory = null;
 
-	/**
-	 * @var Factory|null
-	 */
-	private static $factory = null;
-
-	public static function init(Config $config = null) {
-		if (self::$loaded === true) {
+	public static function init(?Config $config = null): void {
+		if (self::$loaded) {
 			return;
 		}
 
-		if ($config === null && Container::getInstance()->bound(Config::class)) {
+		if (!$config instanceof Config && Container::getInstance()->bound(Config::class)) {
 			$config = Container::getInstance()
 				->make(Config::class);
 		}
@@ -35,16 +29,16 @@ class Eloquent {
 		self::$loaded = true;
 	}
 
-	public static function destroy() {
+	public static function destroy(): void {
 		self::$factory = null;
 		self::$loaded = false;
 	}
 
-	public static function isLoaded() {
+	public static function isLoaded(): bool {
 		return self::$loaded;
 	}
 
-	private static function initEloquent(Config $config) {
+	private static function initEloquent(Config $config): void {
 		$capsule = new Capsule();
 		$capsule->addConnection(self::getConfigConnection($config));
 		$capsule->setEventDispatcher(
@@ -55,7 +49,7 @@ class Eloquent {
 		$capsule->bootEloquent();
 	}
 
-	private static function getConfigConnection(Config $config) {
+	private static function getConfigConnection(Config $config): array {
 		$cfg = [
 			'driver' => 'mysql',
 			'host' => $config->getHost(),
@@ -75,30 +69,33 @@ class Eloquent {
 		return $cfg;
 	}
 
-	private static function createFactory(Config $config) {
-		$factory = new Factory(Faker::factory($config));
-		return $factory;
+	private static function createFactory(Config $config): Factory {
+		return new Factory(Faker::factory($config));
 	}
 
-	private static function loadFactorys(Config $config) {
+	private static function loadFactorys(Config $config): void {
 		self::$factory->load($config->getFactoryFolder());
 	}
 
 	/**
 	 * @return Factory
 	 */
-	public static function factory() {
+	public static function factory(): ?Factory {
 		return self::$factory;
 	}
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\FactoryBuilder
+	 * @return FactoryBuilder
 	 */
 	public static function factoryOf(...$arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
-			return self::factory()->of($arguments[0], $arguments[1])->times(! empty($arguments[2]) ? $arguments[2] : null);
+			return self::factory()
+				->of($arguments[0])
+				->times(empty($arguments[2]) ? null : $arguments[2]);
 		} elseif (isset($arguments[1])) {
-			return self::factory()->of($arguments[0])->times($arguments[1]);
+			return self::factory()
+				->of($arguments[0])
+				->times($arguments[1]);
 		}
 		return self::factory()->of($arguments[0]);
 	}
