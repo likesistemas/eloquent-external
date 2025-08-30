@@ -4,13 +4,11 @@ namespace Like\Database;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Database\Eloquent\FactoryBuilder;
 use Illuminate\Events\Dispatcher;
 
 class Eloquent {
 	private static bool $loaded;
-	private static ?Factory $factory = null;
+	private static ?LegacyFactory $factory = null;
 
 	public static function init(?Config $config = null): void {
 		if (self::$loaded) {
@@ -69,8 +67,8 @@ class Eloquent {
 		return $cfg;
 	}
 
-	private static function createFactory(Config $config): Factory {
-		return new Factory(Faker::factory($config));
+	private static function createFactory(Config $config): LegacyFactory {
+		return new LegacyFactory(Faker::factory($config));
 	}
 
 	private static function loadFactorys(Config $config): void {
@@ -78,20 +76,20 @@ class Eloquent {
 	}
 
 	/**
-	 * @return Factory
+	 * @return LegacyFactory
 	 */
-	public static function factory(): ?Factory {
+	public static function factory(): ?LegacyFactory {
 		return self::$factory;
 	}
 
 	/**
-	 * @return FactoryBuilder
+	 * @return LegacyFactoryBuilder
 	 */
 	public static function factoryOf(...$arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
 			return self::factory()
 				->of($arguments[0])
-				->times(empty($arguments[2]) ? null : $arguments[2]);
+				->times($arguments[2] ?? null);
 		} elseif (isset($arguments[1])) {
 			return self::factory()
 				->of($arguments[0])
