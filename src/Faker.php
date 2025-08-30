@@ -39,7 +39,7 @@ class Faker {
 	}
 
 	public static function unique(Generator $faker, $name, $maxRetries = 10000) {
-		if (! isset(self::$uniques[$name])) {
+		if (!isset(self::$uniques[$name])) {
 			self::$uniques[$name] = new UniqueGenerator($faker, $maxRetries);
 		}
 

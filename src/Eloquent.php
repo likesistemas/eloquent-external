@@ -8,17 +8,10 @@ use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Events\Dispatcher;
 
 class Eloquent {
-	/**
-	 * @var boolean
-	 */
-	private static $loaded;
+	private static bool $loaded;
+	private static ?Factory $factory = null;
 
-	/**
-	 * @var Factory|null
-	 */
-	private static $factory = null;
-
-	public static function init(Config $config = null) {
+	public static function init(?Config $config = null) {
 		if (self::$loaded === true) {
 			return;
 		}
@@ -96,9 +89,13 @@ class Eloquent {
 	 */
 	public static function factoryOf(...$arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
-			return self::factory()->of($arguments[0], $arguments[1])->times(! empty($arguments[2]) ? $arguments[2] : null);
+			return self::factory()
+				->of($arguments[0])
+				->times(!empty($arguments[2]) ? $arguments[2] : null);
 		} elseif (isset($arguments[1])) {
-			return self::factory()->of($arguments[0])->times($arguments[1]);
+			return self::factory()
+				->of($arguments[0])
+				->times($arguments[1]);
 		}
 		return self::factory()->of($arguments[0]);
 	}

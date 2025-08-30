@@ -6,6 +6,7 @@
     "[json]": {
         "files.encoding": "utf8",
     },
+    "php-cs-fixer.executablePath": "/var/www/public/vendor/bin/ecs",
     "php-cs-fixer.onsave": true,
     "php-cs-fixer.showOutput": false,
     "php-cs-fixer.autoFixByBracket": true
