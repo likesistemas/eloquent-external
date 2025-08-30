@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Database\Eloquent\Factory;
+use Like\Database\LegacyFactory;
 use Faker\Generator as Faker;
 use Like\Database\Eloquent;
 use Like\Database\Faker as DatabaseFaker;
 use Like\Database\Tests\Models\Produto;
 use Like\Database\Tests\Models\Subcategoria;
 
-/** @var Factory $factory */
+/** @var LegacyFactory $factory */
 $factory = Eloquent::factory();
 
 $factory->define(Subcategoria::class, function (Faker $faker): array {

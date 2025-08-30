@@ -47,6 +47,7 @@ class EloquentTest extends TestCase {
 	}
 
 	public function testDispatchEvent(): void {
+		/** @var Subcategoria $subcategoria */
 		$subcategoria = Eloquent::factoryOf(Subcategoria::class)->create();
 
 		ProdutoObserver::$i = 0;
