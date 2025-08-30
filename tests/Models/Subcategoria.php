@@ -2,6 +2,7 @@
 
 namespace Like\Database\Tests\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -10,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $codigo
  * @property string $nome
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Subcategoria newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Subcategoria newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Subcategoria query()
- * @method static \Illuminate\Database\Eloquent\Builder|Subcategoria whereCodigo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Subcategoria whereNome($value)
+ * @method static Builder|Subcategoria newModelQuery()
+ * @method static Builder|Subcategoria newQuery()
+ * @method static Builder|Subcategoria query()
+ * @method static Builder|Subcategoria whereCodigo($value)
+ * @method static Builder|Subcategoria whereNome($value)
  *
  * @mixin \Eloquent
  */

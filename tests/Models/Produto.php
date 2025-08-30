@@ -2,6 +2,7 @@
 
 namespace Like\Database\Tests\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,16 +13,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $nome
  * @property integer|null $referencia
  * @property string $valor
- * @property-read \Like\Database\Tests\Models\Subcategoria $subcategoria
+ * @property-read Subcategoria $subcategoria
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Produto newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Produto newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Produto query()
- * @method static \Illuminate\Database\Eloquent\Builder|Produto whereCodigo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Produto whereCodigoSubcategoria($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Produto whereNome($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Produto whereReferencia($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Produto whereValor($value)
+ * @method static Builder|Produto newModelQuery()
+ * @method static Builder|Produto newQuery()
+ * @method static Builder|Produto query()
+ * @method static Builder|Produto whereCodigo($value)
+ * @method static Builder|Produto whereCodigoSubcategoria($value)
+ * @method static Builder|Produto whereNome($value)
+ * @method static Builder|Produto whereReferencia($value)
+ * @method static Builder|Produto whereValor($value)
  *
  * @mixin \Eloquent
  */

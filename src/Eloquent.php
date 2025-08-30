@@ -13,11 +13,11 @@ class Eloquent {
 	private static ?Factory $factory = null;
 
 	public static function init(?Config $config = null): void {
-		if (self::$loaded === true) {
+		if (self::$loaded) {
 			return;
 		}
 
-		if ($config === null && Container::getInstance()->bound(Config::class)) {
+		if (!$config instanceof Config && Container::getInstance()->bound(Config::class)) {
 			$config = Container::getInstance()
 				->make(Config::class);
 		}
@@ -70,8 +70,7 @@ class Eloquent {
 	}
 
 	private static function createFactory(Config $config): Factory {
-		$factory = new Factory(Faker::factory($config));
-		return $factory;
+		return new Factory(Faker::factory($config));
 	}
 
 	private static function loadFactorys(Config $config): void {
@@ -92,7 +91,7 @@ class Eloquent {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
 			return self::factory()
 				->of($arguments[0])
-				->times(!empty($arguments[2]) ? $arguments[2] : null);
+				->times(empty($arguments[2]) ? null : $arguments[2]);
 		} elseif (isset($arguments[1])) {
 			return self::factory()
 				->of($arguments[0])
