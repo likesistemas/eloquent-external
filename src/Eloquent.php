@@ -2,10 +2,10 @@
 
 namespace Like\Database;
 
-use Illuminate\Database\Eloquent\FactoryBuilder;
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\FactoryBuilder;
 use Illuminate\Events\Dispatcher;
 
 class Eloquent {
@@ -85,9 +85,9 @@ class Eloquent {
 	}
 
 	/**
-     * @return FactoryBuilder
-     */
-    public static function factoryOf(...$arguments) {
+	 * @return FactoryBuilder
+	 */
+	public static function factoryOf(...$arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1])) {
 			return self::factory()
 				->of($arguments[0])

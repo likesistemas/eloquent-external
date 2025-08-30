@@ -28,10 +28,10 @@ class Faker {
 	}
 
 	/**
-     * @param string $providerClass
-     * @return Base
-     */
-    private static function createProvider(Generator $faker, $providerClass): object {
+	 * @param string $providerClass
+	 * @return Base
+	 */
+	private static function createProvider(Generator $faker, $providerClass): object {
 		$class = new ReflectionClass($providerClass);
 		return $class->newInstanceArgs([$faker]);
 	}
